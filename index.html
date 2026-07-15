@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700&family=Tajawal:wght=400;500;700&family=Poppins:wght=300;400;500;600;700;800&family=Inter:wght=300;400;500;600;700;800&family=Fira+Code:wght=400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Tajawal', 'Plus Jakarta Sans', sans-serif; }
+    </style>
+    <meta name="monetag" content="3f6e49022115648d9ef0cb1b38018d89">
+</head>
+<body class="bg-[#111216] text-[#E4E6EB] min-h-screen selection:bg-indigo-500/30">
+
+    <header class="py-6 border-b border-slate-800/40 bg-[#111216]">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <button onclick="openPrivacyModal()" class="text-xs font-semibold text-slate-400 hover:text-white bg-[#16171D] border border-slate-800/80 px-4 py-2 rounded-xl transition-all duration-300 hover:border-slate-700">
+                 سياسة الخصوصية
+            </button>
+            <span class="text-2xl font-black text-white tracking-wider font-mono">CodeX</span>
+        </div>
+    </header>
+
+    <section id="categories-section" class="container mx-auto px-6 py-6 overflow-x-auto">
+        <div class="flex gap-2 justify-start md:justify-center min-w-max pb-2" id="categories-container">
+            <button onclick="filterComponents('all')" class="category-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-xs font-bold transition">All Category</button>
+            <button onclick="filterComponents('Button')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Button</button>
+            <button onclick="filterComponents('Card')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Card</button>
+            <button onclick="filterComponents('Checkbox')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Checkbox</button>
+            <button onclick="filterComponents('Input')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Input</button>
+            <button onclick="filterComponents('Loader')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Loader</button>
+            <button onclick="filterComponents('Radio')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Radio</button>
+            <button onclick="filterComponents('Switch')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Switch</button>
+            <button onclick="filterComponents('Tooltip')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Tooltip</button>
+            <button onclick="filterComponents('UI Extended')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">UI Extended</button>
+        </div>
+    </section>
+
+    <div class="container mx-auto px-6 py-2">
+        <div id="ad-space-container" class="w-full flex justify-center items-center overflow-hidden">
+        </div>
+    </div>
+
+    <section id="main-grid-section" class="container mx-auto px-6 py-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="components-grid">
+            <div class="col-span-full text-center py-20">
+                <p class="text-slate-500 text-sm">جاري تحميل المحتوى... </p>
+            </div>
+        </div>
+    </section>
+
+    <div id="code-modal" class="hidden min-h-[calc(100vh-80px)] bg-[#111216] flex flex-col z-50">
+        <div class="container mx-auto px-6 py-4 flex-1 flex flex-col">
+            <div class="bg-[#16171D] border border-slate-850 rounded-2xl flex-1 flex flex-col overflow-hidden relative shadow-2xl min-h-[75vh]">
+                
+                <div class="p-4 border-b border-slate-800/80 flex justify-between items-center bg-[#111216]">
+                    <div class="flex items-center gap-3">
+                        <button onclick="closeModal()" class="text-slate-400 hover:text-white text-xs flex items-center gap-1 bg-[#1A1C23] border border-slate-800 px-3 py-1.5 rounded-lg transition">
+                            <span>←</span> خلف
+                        </button>
+                        <h3 class="text-sm font-bold text-white" id="modal-category">اسم القسم</h3>
+                    </div>
+                </div>
+
+                <div class="flex-1 grid grid-cols-1 lg:grid-cols-2 overflow-hidden" style="direction: ltr;">
+                    
+                    <div class="bg-[#EAEAEA] min-h-[300px] lg:min-h-0 flex items-center justify-center overflow-auto relative">
+                        <div id="live-preview-box" class="w-full h-full flex justify-center items-center"></div>
+                    </div>
+
+                    <div class="bg-[#111216] border-t lg:border-t-0 lg:border-l border-slate-800 flex flex-col overflow-hidden">
+                        <div class="flex border-b border-slate-800/80 bg-[#16171D] px-4 gap-1">
+                            <button id="tab-html-btn" onclick="switchCodeTab('html')" class="px-4 py-3 text-xs font-bold border-b-2 border-indigo-500 text-white transition">HTML</button>
+                            <button id="tab-css-btn" onclick="switchCodeTab('css')" class="px-4 py-3 text-xs font-semibold text-slate-400 hover:text-white transition">CSS</button>
+                            <button id="tab-js-btn" onclick="switchCodeTab('js')" class="px-4 py-3 text-xs font-semibold text-slate-400 hover:text-white transition hidden">JS</button>
+                        </div>
+
+                        <div class="flex justify-between items-center bg-[#111216] px-4 py-2.5 border-b border-slate-800/50">
+                            <span class="text-[10px] text-slate-500 font-mono tracking-wider" id="code-type-label">HTML CODE</span>
+                            <button onclick="copyCurrentCode()" class="bg-[#1A1C23] border border-slate-800 hover:bg-indigo-600 hover:text-white text-slate-300 text-xs px-4 py-1.5 rounded-lg transition-all flex items-center gap-1.5" id="copy-btn">
+                                <span>📋</span> نسخ الكود
+                            </button>
+                        </div>
+
+                        <pre class="flex-1 p-5 overflow-auto text-left"><code class="text-xs font-mono text-emerald-400 whitespace-pre-wrap" id="modal-code"></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="privacy-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 hidden z-50 backdrop-blur-sm">
+        <div class="bg-[#16171D] border border-slate-800/80 rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl">
+            
+            <div class="p-5 border-b border-slate-800/80 flex justify-between items-center bg-[#111216]">
+                <h3 class="text-md font-bold text-white flex items-center gap-2">
+                    <span>🛡️</span> سياسة الخصوصية لـ CodeX
+                </h3>
+                <button onclick="closePrivacyModal()" class="text-slate-400 hover:text-white text-lg transition">
+                    &times;
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto space-y-4 text-slate-300 text-sm leading-relaxed">
+                <p>مرحبًا بك في موقع <strong>CodeX</strong>. خصوصيتك تهمنا، ونسعى دائمًا لتوفير بيئة تصفح آمنة ومريحة لجميع زوارنا ومطورينا.</p>
+                
+                <hr class="border-slate-800/60">
+
+                <h4 class="font-bold text-indigo-400 text-md">📌 الإعلانات التي نستخدمها</h4>
+                <p>نحن نستخدم شبكة إعلانات <strong>Monetag</strong> الموثوقة لتمويل هذا المشروع وتطويره بشكل مستمر. قد تقوم هذه الخدمات بجمع معلومات غير شخصية عن تصفحك لتقديم إعلانات تناسب اهتماماتك.</p>
+
+                <h4 class="font-bold text-indigo-400 text-md">💡 ساعدنا على الاستمرار والنمو</h4>
+                <div class="bg-indigo-950/30 border border-indigo-500/20 p-4 rounded-xl text-indigo-300">
+                    إن تقديم هذه المكونات البرمجية الجاهزة وبجودة عالية يتطلب الكثير من الجهد والوقت ومصاريف تشغيل الخوادم وقواعد البيانات. 
+                    <strong class="text-white block mt-2">🙏 يرجى مساعدتنا عن طريق إلغاء تفعيل أدوات حظر الإعلانات (AdBlocker) على موقعنا.</strong>
+                    تأكد تمامًا أن إعلاناتنا غير مزعجة وهدفها الوحيد هو دعم هذا العمل المجاني.
+                </div>
+
+                <p>باستخدامك لموقعنا، فإنك توافق على سياسة الخصوصية المتبعة لدينا. شكرًا لتفهمكم ودعمكم المستمر!</p>
+            </div>
+
+            <div class="p-4 border-t border-slate-800/80 bg-[#111216] flex justify-end">
+                <button onclick="closePrivacyModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-6 py-2.5 rounded-lg font-bold transition-all">
+                    موافق ومتابعة التصفح
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyC229nsYy9leoR9nh_Ehai_216X1bUPFbs",
+            authDomain: "studio-2342835081-4fd5b.firebaseapp.com",
+            projectId: "studio-2342835081-4fd5b",
+            storageBucket: "studio-2342835081-4fd5b.firebasestorage.app",
+            messagingSenderId: "331082025852",
+            appId: "1:331082025852:web:d24f1068950c7192a8b2f9"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let allComponents = [];
+        let activeComponent = null;
+        let activeTab = 'html';
+
+        async function loadAdvertisement() {
+            try {
+                const adDocRef = doc(db, "settings", "ads");
+                const adSnap = await getDoc(adDocRef);
+                const container = document.getElementById('ad-space-container');
+                if (adSnap.exists() && adSnap.data().adCode) {
+                    const adCode = adSnap.data().adCode.trim();
+                    if (adCode !== "") {
+                        container.innerHTML = '';
+                        const range = document.createRange();
+                        const documentFragment = range.createContextualFragment(adCode);
+                        container.appendChild(documentFragment);
+                    }
+                }
+            } catch (err) {
+                console.error("فشل تحميل كود الإعلان:", err);
+            }
+        }
+
+        function injectExternalAds() {
+            try {
+                const script1 = document.createElement('script');
+                script1.textContent = `(function(s){s.dataset.zone='11308914',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`;
+                document.body.appendChild(script1);
+            } catch (e) {
+                console.error("خطأ في حقن الإعلانات الخارجية:", e);
+            }
+        }
+
+        function showFriendlyErrorMessage() {
+            const grid = document.getElementById('components-grid');
+            grid.innerHTML = `
+                <div class="col-span-full text-center py-16 px-6 bg-[#16171D] border border-slate-800/80 rounded-2xl max-w-xl mx-auto my-8 shadow-xl">
+                    <div class="text-indigo-500 text-4xl mb-4">🔄</div>
+                    <h4 class="text-white font-bold text-base mb-2">عذرًا، قد يكون هناك ضغط كبير على الموقع حاليًا</h4>
+                    <p class="text-slate-400 text-xs leading-relaxed mb-6 max-w-md mx-auto">
+                        يبدو أن خوادمنا تستقبل الكثير من الطلبات في الوقت الحالي، مما قد يؤدي إلى تأخر في جلب البيانات من قاعدة البيانات. نرجو منكم الانتظار قليلاً أو محاولة تحديث الصفحة.
+                    </p>
+                    <button id="retry-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-6 py-3 rounded-xl transition-all duration-300 shadow-md flex items-center gap-2 mx-auto hover:scale-105 active:scale-95">
+                        🔄 تحديث الصفحة بالكامل
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('retry-btn').addEventListener('click', () => {
+                window.location.reload();
+            });
+        }
+
+        async function fetchComponents() {
+            const grid = document.getElementById('components-grid');
+            grid.innerHTML = `
+                <div class="col-span-full text-center py-20">
+                    <p class="text-slate-500 text-sm">جاري تحميل المحتوى... </p>
+                </div>
+            `;
+
+            try {
+                const querySnapshot = await getDocs(collection(db, "components"));
+                allComponents = [];
+                querySnapshot.forEach((doc) => {
+                    allComponents.push({ id: doc.id, ...doc.data() });
+                });
+
+                if (allComponents.length === 0) {
+                    showFriendlyErrorMessage();
+                } else {
+                    displayComponents(allComponents);
+                }
+
+                loadAdvertisement();
+                injectExternalAds();
+
+            } catch (error) {
+                console.error(error);
+                showFriendlyErrorMessage();
+                loadAdvertisement();
+                injectExternalAds();
+            }
+        }
+
+        function processCSS(cssCode) {
+            if (!cssCode) return '';
+            
+            let processed = cssCode.replace(/(?<![\w-])body(?![\w-])/g, '.shadow-body');
+            processed = processed.replace(/background-clip:\s*text;/g, 'background-clip: text; -webkit-background-clip: text;');
+            processed = `
+                @import url('https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700;800&family=Inter:wght=300;400;500;600;700;800&family=Fira+Code:wght=400;500&display=swap');
+                
+                :host {
+                    --main-size: 4em;
+                    --text-color: #000000;
+                    --shine-color: rgba(255, 255, 255, 0.25);
+                    --shadow-color: #aaaaaa;
+                    font-family: 'Poppins', 'Inter', system-ui, -apple-system, sans-serif;
+                }
+                ${processed}
+            `;
+            return processed;
+        }
+
+        function displayComponents(data) {
+            const grid = document.getElementById('components-grid');
+            grid.innerHTML = '';
+
+            data.forEach((comp) => {
+                const card = document.createElement('div');
+                card.className = "group bg-[#16171D] border border-slate-800/80 rounded-2xl overflow-hidden hover:border-slate-700 transition-all duration-300 flex flex-col justify-between";
+                
+                const previewWrapper = document.createElement('div');
+                previewWrapper.className = "bg-[#EAEAEA] min-h-[220px] max-h-[260px] flex items-stretch justify-stretch relative overflow-hidden";
+                
+                const previewContainer = document.createElement('div');
+                previewContainer.className = "relative z-10 w-full flex";
+                
+                const shadow = previewContainer.attachShadow({ mode: 'open' });
+                const userCSS = processCSS(comp.cssCode);
+
+                shadow.innerHTML = `
+                    <style>
+                        :host { width: 100%; display: flex; }
+                        .shadow-body { 
+                            width: 100%; 
+                            min-height: 100%; 
+                            display: flex; 
+                            justify-content: center; 
+                            align-items: center; 
+                            box-sizing: border-box;
+                            transition: all 0.3s ease;
+                        }
+                        ${userCSS}
+                    </style>
+                    <div class="shadow-body">
+                        ${comp.htmlCode || ''}
+                    </div>
+                `;
+
+                previewWrapper.appendChild(previewContainer);
+                card.appendChild(previewWrapper);
+
+                const footer = document.createElement('div');
+                footer.className = "p-4 flex justify-between items-center bg-[#16171D]";
+                footer.innerHTML = `
+                    <div>
+                        <span class="inline-block bg-[#111216] border border-slate-800 text-indigo-400 text-[10px] px-2.5 py-1 rounded font-semibold font-mono">${comp.category}</span>
+                    </div>
+                    <button class="get-code-btn bg-[#111216] border border-slate-800 hover:bg-indigo-600 text-indigo-300 hover:text-white text-[11px] px-3.5 py-2 rounded-xl font-bold transition-all duration-300">&lt;/&gt; Get Code</button>
+                `;
+
+                card.appendChild(footer);
+
+                if (comp.jsCode && comp.jsCode.trim() !== '') {
+                    const script = document.createElement('script');
+                    script.textContent = `try { ${comp.jsCode} } catch(e) { console.error(e); }`;
+                    shadow.appendChild(script);
+                }
+
+                card.querySelector('.get-code-btn').addEventListener('click', () => showCode(comp));
+                grid.appendChild(card);
+            });
+        }
+
+        window.filterComponents = function(category) {
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.className = "category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition";
+            });
+            
+            // إضافة حماية للتأكد من وجود الحدث قبل قراءته
+            if (event && event.target) {
+                event.target.className = "category-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-xs font-bold transition";
+            }
+
+            if (category === 'all') {
+                if (allComponents.length === 0) {
+                    showFriendlyErrorMessage();
+                } else {
+                    displayComponents(allComponents);
+                }
+            } else {
+                const filtered = allComponents.filter(c => c.category === category);
+                displayComponents(filtered);
+            }
+        };
+
+        // تعديل دالة عرض الكود لإخفاء العناصر الأساسية وعرض منطقة الكود كصفحة مستقلة
+        function showCode(comp) {
+            activeComponent = comp;
+            document.getElementById('modal-category').innerText = comp.category;
+
+            const liveBox = document.getElementById('live-preview-box');
+            liveBox.innerHTML = '';
+            
+            const shadow = liveBox.attachShadow({ mode: 'open' });
+            const userCSS = processCSS(comp.cssCode);
+
+            shadow.innerHTML = `
+                <style>
+                    :host { width: 100%; height: 100%; display: flex; }
+                    .shadow-body { 
+                        width: 100%; 
+                        height: 100%; 
+                        display: flex; 
+                        justify-content: center; 
+                        align-items: center; 
+                        box-sizing: border-box;
+                    }
+                    ${userCSS}
+                </style>
+                <div class="shadow-body">
+                    ${comp.htmlCode || ''}
+                </div>
+            `;
+
+            if (comp.jsCode && comp.jsCode.trim() !== '') {
+                const script = document.createElement('script');
+                script.textContent = `try { ${comp.jsCode} } catch(e) { console.error(e); }`;
+                shadow.appendChild(script);
+            }
+
+            const jsTabBtn = document.getElementById('tab-js-btn');
+            if (comp.jsCode && typeof comp.jsCode === 'string' && comp.jsCode.trim() !== "") {
+                jsTabBtn.classList.remove('hidden');
+            } else {
+                jsTabBtn.classList.add('hidden');
+            }
+
+            switchCodeTab('html');
+
+            // إخفاء أقسام الصفحة الرئيسية لتبدو كصفحة منفصلة تماماً
+            document.getElementById('categories-section').classList.add('hidden');
+            document.getElementById('main-grid-section').classList.add('hidden');
+            const adContainer = document.getElementById('ad-space-container');
+            if (adContainer && adContainer.parentElement) {
+                adContainer.parentElement.classList.add('hidden');
+            }
+
+            // إظهار صفحة الأكواد والتمرير لأعلى الصفحة بسلاسة
+            document.getElementById('code-modal').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.switchCodeTab = function(tab) {
+            activeTab = tab;
+            const htmlBtn = document.getElementById('tab-html-btn');
+            const cssBtn = document.getElementById('tab-css-btn');
+            const jsBtn = document.getElementById('tab-js-btn');
+            const codeBox = document.getElementById('modal-code');
+            const label = document.getElementById('code-type-label');
+
+            [htmlBtn, cssBtn, jsBtn].forEach(btn => {
+                btn.classList.remove('border-b-2', 'border-indigo-500', 'text-white', 'font-bold');
+                btn.classList.add('text-slate-400', 'font-semibold');
+            });
+
+            if (tab === 'html') {
+                htmlBtn.classList.add('border-b-2', 'border-indigo-500', 'text-white', 'font-bold');
+                htmlBtn.classList.remove('text-slate-400', 'font-semibold');
+                codeBox.textContent = activeComponent.htmlCode || '';
+                label.innerText = 'HTML CODE';
+            } else if (tab === 'css') {
+                cssBtn.classList.add('border-b-2', 'border-indigo-500', 'text-white', 'font-bold');
+                cssBtn.classList.remove('text-slate-400', 'font-semibold');
+                codeBox.textContent = activeComponent.cssCode || '/* لا يوجد كود CSS مخصص */';
+                label.innerText = 'CSS CODE';
+            } else if (tab === 'js') {
+                jsBtn.classList.add('border-b-2', 'border-indigo-500', 'text-white', 'font-bold');
+                jsBtn.classList.remove('text-slate-400', 'font-semibold');
+                codeBox.textContent = activeComponent.jsCode || '';
+                label.innerText = 'JS CODE';
+            }
+        };
+
+        // دالة العودة "خلف" التي تعيد إظهار عناصر المعرض والاقسام وتخفي صفحة الأكواد
+        window.closeModal = function() {
+            document.getElementById('code-modal').classList.add('hidden');
+            
+            document.getElementById('categories-section').classList.remove('hidden');
+            document.getElementById('main-grid-section').classList.remove('hidden');
+            const adContainer = document.getElementById('ad-space-container');
+            if (adContainer && adContainer.parentElement) {
+                adContainer.parentElement.classList.remove('hidden');
+            }
+
+            document.getElementById('copy-btn').innerHTML = '<span>📋</span> نسخ الكود';
+        };
+
+        window.copyCurrentCode = function() {
+            let codeToCopy = '';
+            if (activeTab === 'html') codeToCopy = activeComponent.htmlCode;
+            else if (activeTab === 'css') codeToCopy = activeComponent.cssCode;
+            else if (activeTab === 'js') codeToCopy = activeComponent.jsCode;
+
+            navigator.clipboard.writeText(codeToCopy).then(() => {
+                const copyBtn = document.getElementById('copy-btn');
+                copyBtn.innerHTML = "<span>✓</span> تم النسخ!";
+                setTimeout(() => copyBtn.innerHTML = '<span>📋</span> نسخ الكود', 2000);
+            });
+        };
+
+        window.openPrivacyModal = function() {
+            document.getElementById('privacy-modal').classList.remove('hidden');
+        }
+
+        window.closePrivacyModal = function() {
+            document.getElementById('privacy-modal').classList.add('hidden');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchComponents();
+        });
+    </script>
+</body>
+</html>
+
