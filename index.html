@@ -19,24 +19,22 @@
                 <button onclick="openPrivacyModal()" class="text-xs font-semibold text-slate-400 hover:text-white bg-[#16171D] border border-slate-800/80 px-4 py-2 rounded-xl transition-all duration-300 hover:border-slate-700">
                      سياسة الخصوصية
                 </button>
-                <a href="index.html" onclick="event.preventDefault(); navigateToHome();" class="block transition-transform duration-300 hover:scale-105">
-                    <img src="https://i.ibb.co/jkYdS35V/Chat-GPT-Image-15-2026-11-16-26.png" alt="CodeX Logo" class="h-10 w-auto object-contain">
-                </a>
+                <span class="text-2xl font-black text-white tracking-wider font-mono cursor-pointer" onclick="navigateToHome()">CodeX</span>
             </div>
         </header>
 
         <section class="container mx-auto px-6 py-6 overflow-x-auto">
             <div class="flex gap-2 justify-start md:justify-center min-w-max pb-2" id="categories-container">
-                <a href="?all" onclick="event.preventDefault(); filterComponents('all')" class="category-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-xs font-bold transition">All Category</a>
-                <a href="?category=Button" onclick="event.preventDefault(); filterComponents('Button')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Button</a>
-                <a href="?category=Card" onclick="event.preventDefault(); filterComponents('Card')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Card</a>
-                <a href="?category=Checkbox" onclick="event.preventDefault(); filterComponents('Checkbox')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Checkbox</a>
-                <a href="?category=Input" onclick="event.preventDefault(); filterComponents('Input')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Input</a>
-                <a href="?category=Loader" onclick="event.preventDefault(); filterComponents('Loader')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Loader</a>
-                <a href="?category=Radio" onclick="event.preventDefault(); filterComponents('Radio')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Radio</a>
-                <a href="?category=Switch" onclick="event.preventDefault(); filterComponents('Switch')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Switch</a>
-                <a href="?category=Tooltip" onclick="event.preventDefault(); filterComponents('Tooltip')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Tooltip</a>
-                <a href="?category=UI Extended" onclick="event.preventDefault(); filterComponents('UI Extended')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">UI Extended</a>
+                <button onclick="filterComponents('all')" class="category-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-xs font-bold transition">All Category</button>
+                <button onclick="filterComponents('Button')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Button</button>
+                <button onclick="filterComponents('Card')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Card</button>
+                <button onclick="filterComponents('Checkbox')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Checkbox</button>
+                <button onclick="filterComponents('Input')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Input</button>
+                <button onclick="filterComponents('Loader')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Loader</button>
+                <button onclick="filterComponents('Radio')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Radio</button>
+                <button onclick="filterComponents('Switch')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Switch</button>
+                <button onclick="filterComponents('Tooltip')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Tooltip</button>
+                <button onclick="filterComponents('UI Extended')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">UI Extended</button>
             </div>
         </section>
 
@@ -58,14 +56,12 @@
         <header class="py-4 border-b border-slate-800/40 bg-[#111216]">
             <div class="container mx-auto px-6 flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <a href="index.html" onclick="event.preventDefault(); navigateToHome()" class="text-slate-400 hover:text-white text-xs flex items-center gap-1 bg-[#16171D] border border-slate-800 px-3 py-1.5 rounded-lg transition">
+                    <button onclick="navigateToHome()" class="text-slate-400 hover:text-white text-xs flex items-center gap-1 bg-[#16171D] border border-slate-800 px-3 py-1.5 rounded-lg transition">
                         <span>←</span> العودة للرئيسية
-                    </a>
+                    </button>
                     <h3 class="text-sm font-bold text-white" id="page-category">اسم القسم</h3>
                 </div>
-                <a href="index.html" onclick="event.preventDefault(); navigateToHome();" class="block transition-transform duration-300 hover:scale-105">
-                    <img src="https://i.ibb.co/jkYdS35V/Chat-GPT-Image-15-2026-11-16-26.png" alt="CodeX Logo" class="h-8 w-auto object-contain">
-                </a>
+                <span class="text-2xl font-black text-white tracking-wider font-mono cursor-pointer" onclick="navigateToHome()">CodeX</span>
             </div>
         </header>
 
@@ -170,6 +166,7 @@
             }
         }
 
+        // دالة عرض رسالة الخطأ الصديقة للمستخدم
         function showFriendlyErrorMessage() {
             const grid = document.getElementById('components-grid');
             grid.innerHTML = `
@@ -278,18 +275,13 @@
                 previewWrapper.appendChild(previewContainer);
                 card.appendChild(previewWrapper);
 
-                const originalIndex = allComponents.indexOf(comp);
-                const categoryEncoded = encodeURIComponent(comp.category);
-                const numId = comp.numId !== undefined ? comp.numId : originalIndex;
-                const projectUrl = `?page=project&category=${categoryEncoded}&id=${numId}`;
-
                 const footer = document.createElement('div');
                 footer.className = "p-4 flex justify-between items-center bg-[#16171D]";
                 footer.innerHTML = `
                     <div>
                         <span class="inline-block bg-[#111216] border border-slate-800 text-indigo-400 text-[10px] px-2.5 py-1 rounded font-semibold font-mono">${comp.category}</span>
                     </div>
-                    <a href="${projectUrl}" class="get-code-btn bg-[#111216] border border-slate-800 hover:bg-indigo-600 text-indigo-300 hover:text-white text-[11px] px-3.5 py-2 rounded-xl font-bold transition-all duration-300">&lt;/&gt; Get Code</a>
+                    <button class="get-code-btn bg-[#111216] border border-slate-800 hover:bg-indigo-600 text-indigo-300 hover:text-white text-[11px] px-3.5 py-2 rounded-xl font-bold transition-all duration-300">&lt;/&gt; Get Code</button>
                 `;
 
                 card.appendChild(footer);
@@ -300,15 +292,68 @@
                     shadow.appendChild(script);
                 }
 
-                // مستمع حدث النقرة العادية لزر الـ Get Code ليعمل كصفحة واحدة دون إعادة تحميل
-                card.querySelector('.get-code-btn').addEventListener('click', (event) => {
-                    // إذا تم النقر مع Ctrl أو زر الفأرة الأوسط، نترك المتصفح يفتحه في صفحة جديدة بشكل طبيعي
-                    if (event.ctrlKey || event.metaKey || event.button === 1) {
-                        return;
-                    }
-                    event.preventDefault();
+                const originalIndex = allComponents.indexOf(comp);
+                const getCodeBtn = card.querySelector('.get-code-btn');
+
+                const categoryEncoded = encodeURIComponent(comp.category);
+                const numId = comp.numId !== undefined ? comp.numId : originalIndex;
+                const projectUrl = `?page=project&category=${categoryEncoded}&id=${numId}`;
+
+                let pressTimer;
+
+                // وظيفة الفتح في صفحة جديدة
+                const openInNewTab = () => {
+                    window.open(projectUrl, '_blank');
+                };
+
+                // وظيفة الفتح في نفس الصفحة (الافتراضية)
+                const openInSamePage = () => {
                     window.history.pushState({}, '', projectUrl);
                     route();
+                };
+
+                // 1. دعم الضغط المطول للهواتف والأجهزة المكتبية
+                getCodeBtn.addEventListener('mousedown', (e) => {
+                    if (e.button === 0) { // النقر بالزر الأيسر فقط
+                        pressTimer = setTimeout(() => {
+                            openInNewTab();
+                            getCodeBtn.dataset.longPressed = "true";
+                        }, 600); // 600 مللي ثانية للتعرف على الضغط المطول
+                    }
+                });
+
+                getCodeBtn.addEventListener('mouseup', () => {
+                    clearTimeout(pressTimer);
+                });
+
+                getCodeBtn.addEventListener('mouseleave', () => {
+                    clearTimeout(pressTimer);
+                });
+
+                // لدعم شاشات اللمس (الهواتف الذكية)
+                getCodeBtn.addEventListener('touchstart', () => {
+                    pressTimer = setTimeout(() => {
+                        openInNewTab();
+                        getCodeBtn.dataset.longPressed = "true";
+                    }, 600);
+                }, { passive: true });
+
+                getCodeBtn.addEventListener('touchend', () => {
+                    clearTimeout(pressTimer);
+                });
+
+                // 2. معالجة النقرة العادية
+                getCodeBtn.addEventListener('click', (e) => {
+                    if (getCodeBtn.dataset.longPressed === "true") {
+                        delete getCodeBtn.dataset.longPressed;
+                        return;
+                    }
+                    
+                    if (e.ctrlKey || e.metaKey) {
+                        openInNewTab();
+                    } else {
+                        openInSamePage();
+                    }
                 });
 
                 grid.appendChild(card);
@@ -335,12 +380,14 @@
             }
         };
 
+        // دالة عرض المشروع كصفحة كاملة مع تعديل حل مشكلة الـ Shadow DOM المتكرر
         function showProjectPage(comp) {
             activeComponent = comp;
             document.getElementById('page-category').innerText = comp.category;
 
             const liveBox = document.getElementById('live-preview-box');
             
+            // الحل: تنظيف الحاوي بالكامل وبناء عنصر داخلي جديد لاستقبال الـ Shadow DOM الجديد دائماً
             liveBox.innerHTML = ''; 
             const shadowHost = document.createElement('div');
             shadowHost.className = "w-full h-full flex justify-center items-center";
@@ -458,9 +505,7 @@
                 displayComponents(filtered);
                 
                 document.querySelectorAll('.category-btn').forEach(btn => {
-                    // تحقق من تطابق النص أو الرابط لتنشيط القسم
-                    const btnCategory = btn.getAttribute('href').replace('?category=', '');
-                    if(decodeURIComponent(btnCategory).toLowerCase() === category.toLowerCase()) {
+                    if(btn.innerText.toLowerCase() === category.toLowerCase()) {
                         btn.className = "category-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-xs font-bold transition";
                     } else {
                         btn.className = "category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition";
