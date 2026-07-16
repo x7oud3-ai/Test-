@@ -66,7 +66,7 @@
         </header>
 
         <div class="flex-1 grid grid-cols-1 lg:grid-cols-2 overflow-hidden" style="direction: ltr;">
-            <div class="bg-[#EAEAEA] min-h-[40vh] lg:min-h-0 flex items-center justify-center overflow-auto relative p-6">
+            <div id="live-preview-bg" class="min-h-[40vh] lg:min-h-0 flex items-center justify-center overflow-auto relative p-6 transition-colors duration-300">
                 <div id="live-preview-box" class="w-full h-full flex justify-center items-center"></div>
             </div>
 
@@ -166,7 +166,6 @@
             }
         }
 
-        // دالة عرض رسالة الخطأ الصديقة للمستخدم
         function showFriendlyErrorMessage() {
             const grid = document.getElementById('components-grid');
             grid.innerHTML = `
@@ -244,8 +243,10 @@
                 const card = document.createElement('div');
                 card.className = "group bg-[#16171D] border border-slate-800/80 rounded-2xl overflow-hidden hover:border-slate-700 transition-all duration-300 flex flex-col justify-between";
                 
+                const componentBgColor = comp.bgColor || '#EAEAEA';
                 const previewWrapper = document.createElement('div');
-                previewWrapper.className = "bg-[#EAEAEA] min-h-[220px] max-h-[260px] flex items-stretch justify-stretch relative overflow-hidden";
+                previewWrapper.className = "min-h-[220px] max-h-[260px] flex items-stretch justify-stretch relative overflow-hidden";
+                previewWrapper.style.backgroundColor = componentBgColor;
                 
                 const previewContainer = document.createElement('div');
                 previewContainer.className = "relative z-10 w-full flex";
@@ -301,24 +302,21 @@
 
                 let pressTimer;
 
-                // وظيفة الفتح في صفحة جديدة
                 const openInNewTab = () => {
                     window.open(projectUrl, '_blank');
                 };
 
-                // وظيفة الفتح في نفس الصفحة (الافتراضية)
                 const openInSamePage = () => {
                     window.history.pushState({}, '', projectUrl);
                     route();
                 };
 
-                // 1. دعم الضغط المطول للهواتف والأجهزة المكتبية
                 getCodeBtn.addEventListener('mousedown', (e) => {
-                    if (e.button === 0) { // النقر بالزر الأيسر فقط
+                    if (e.button === 0) {
                         pressTimer = setTimeout(() => {
                             openInNewTab();
                             getCodeBtn.dataset.longPressed = "true";
-                        }, 600); // 600 مللي ثانية للتعرف على الضغط المطول
+                        }, 600);
                     }
                 });
 
@@ -330,7 +328,6 @@
                     clearTimeout(pressTimer);
                 });
 
-                // لدعم شاشات اللمس (الهواتف الذكية)
                 getCodeBtn.addEventListener('touchstart', () => {
                     pressTimer = setTimeout(() => {
                         openInNewTab();
@@ -342,7 +339,6 @@
                     clearTimeout(pressTimer);
                 });
 
-                // 2. معالجة النقرة العادية
                 getCodeBtn.addEventListener('click', (e) => {
                     if (getCodeBtn.dataset.longPressed === "true") {
                         delete getCodeBtn.dataset.longPressed;
@@ -380,14 +376,17 @@
             }
         };
 
-        // دالة عرض المشروع كصفحة كاملة مع تعديل حل مشكلة الـ Shadow DOM المتكرر
         function showProjectPage(comp) {
             activeComponent = comp;
             document.getElementById('page-category').innerText = comp.category;
 
             const liveBox = document.getElementById('live-preview-box');
             
-            // الحل: تنظيف الحاوي بالكامل وبناء عنصر داخلي جديد لاستقبال الـ Shadow DOM الجديد دائماً
+            const livePreviewBg = document.getElementById('live-preview-bg');
+            if (livePreviewBg) {
+                livePreviewBg.style.backgroundColor = comp.bgColor || '#EAEAEA';
+            }
+
             liveBox.innerHTML = ''; 
             const shadowHost = document.createElement('div');
             shadowHost.className = "w-full h-full flex justify-center items-center";
