@@ -204,7 +204,6 @@
                     showFriendlyErrorMessage();
                 } else {
                     displayComponents(allComponents);
-                    // فحص الرابط للتحقق من التوجيه
                     route();
                 }
 
@@ -293,7 +292,6 @@
                 }
 
                 const originalIndex = allComponents.indexOf(comp);
-                // عند الضغط، يتم تغيير الرابط والانتقال للمشروع كصفحة مستقلة
                 card.querySelector('.get-code-btn').addEventListener('click', () => {
                     const categoryEncoded = encodeURIComponent(comp.category);
                     const numId = comp.numId !== undefined ? comp.numId : originalIndex;
@@ -325,15 +323,20 @@
             }
         };
 
-        // دالة لعرض المشروع كصفحة كاملة مستقلة تماماً
+        // دالة عرض المشروع كصفحة كاملة مع تعديل حل مشكلة الـ Shadow DOM المتكرر
         function showProjectPage(comp) {
             activeComponent = comp;
             document.getElementById('page-category').innerText = comp.category;
 
             const liveBox = document.getElementById('live-preview-box');
-            liveBox.innerHTML = '';
             
-            const shadow = liveBox.attachShadow({ mode: 'open' });
+            // الحل: تنظيف الحاوي بالكامل وبناء عنصر داخلي جديد لاستقبال الـ Shadow DOM الجديد دائماً
+            liveBox.innerHTML = ''; 
+            const shadowHost = document.createElement('div');
+            shadowHost.className = "w-full h-full flex justify-center items-center";
+            liveBox.appendChild(shadowHost);
+
+            const shadow = shadowHost.attachShadow({ mode: 'open' });
             const userCSS = processCSS(comp.cssCode);
 
             shadow.innerHTML = `
@@ -369,7 +372,6 @@
 
             switchCodeTab('html');
 
-            // إخفاء الصفحة الرئيسية وإظهار صفحة المشروع الكاملة
             document.getElementById('main-view').classList.add('hidden');
             document.getElementById('project-view').classList.remove('hidden');
         }
@@ -406,7 +408,6 @@
         };
 
         window.navigateToHome = function() {
-            // تفريغ الرابط والعودة للرئيسية
             window.history.pushState({}, '', window.location.pathname);
             route();
         };
@@ -424,7 +425,6 @@
             });
         };
 
-        // نظام التوجيه وإدارة العرض الفعلي للصفحات (Routing Engine)
         function route() {
             const urlParams = new URLSearchParams(window.location.search);
             const page = urlParams.get('page');
@@ -432,7 +432,6 @@
             const id = urlParams.get('id');
 
             if (page === 'project' && category && id) {
-                // البحث عن المكوّن المطابق للقسم والـ ID الرقمي لفتحه مباشرة
                 const targetComp = allComponents.find((comp, index) => {
                     const compId = comp.numId !== undefined ? comp.numId.toString() : index.toString();
                     return comp.category.toLowerCase() === category.toLowerCase() && compId === id;
@@ -444,12 +443,10 @@
                 }
             }
 
-            // تصفية الأقسام بناءً على الرابط بشكل ثابت عند التحديث
             if (category && !page) {
                 const filtered = allComponents.filter(c => c.category.toLowerCase() === category.toLowerCase());
                 displayComponents(filtered);
                 
-                // تحديث الأزرار بصرياً لتطابق القسم المحدد بالرابط
                 document.querySelectorAll('.category-btn').forEach(btn => {
                     if(btn.innerText.toLowerCase() === category.toLowerCase()) {
                         btn.className = "category-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-xs font-bold transition";
@@ -461,12 +458,10 @@
                 displayComponents(allComponents);
             }
 
-            // إظهار الصفحة الرئيسية وإخفاء صفحات العرض الأخرى
             document.getElementById('project-view').classList.add('hidden');
             document.getElementById('main-view').classList.remove('hidden');
         }
 
-        // الاستماع لزر "الخلف والتقدم" بالمتصفح لإبقاء التصفح متزامناً
         window.addEventListener('popstate', route);
 
         window.openPrivacyModal = function() {
