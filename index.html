@@ -13,84 +13,84 @@
 </head>
 <body class="bg-[#111216] text-[#E4E6EB] min-h-screen selection:bg-indigo-500/30">
 
-    <header class="py-6 border-b border-slate-800/40 bg-[#111216]">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <button onclick="openPrivacyModal()" class="text-xs font-semibold text-slate-400 hover:text-white bg-[#16171D] border border-slate-800/80 px-4 py-2 rounded-xl transition-all duration-300 hover:border-slate-700">
-                 سياسة الخصوصية
-            </button>
-            <span class="text-2xl font-black text-white tracking-wider font-mono">CodeX</span>
-        </div>
-    </header>
+    <div id="main-view" class="view-section">
+        <header class="py-6 border-b border-slate-800/40 bg-[#111216]">
+            <div class="container mx-auto px-6 flex justify-between items-center">
+                <button onclick="openPrivacyModal()" class="text-xs font-semibold text-slate-400 hover:text-white bg-[#16171D] border border-slate-800/80 px-4 py-2 rounded-xl transition-all duration-300 hover:border-slate-700">
+                     سياسة الخصوصية
+                </button>
+                <span class="text-2xl font-black text-white tracking-wider font-mono cursor-pointer" onclick="navigateToHome()">CodeX</span>
+            </div>
+        </header>
 
-    <section class="container mx-auto px-6 py-6 overflow-x-auto">
-        <div class="flex gap-2 justify-start md:justify-center min-w-max pb-2" id="categories-container">
-            <button onclick="filterComponents('all')" class="category-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-xs font-bold transition">All Category</button>
-            <button onclick="filterComponents('Button')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Button</button>
-            <button onclick="filterComponents('Card')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Card</button>
-            <button onclick="filterComponents('Checkbox')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Checkbox</button>
-            <button onclick="filterComponents('Input')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Input</button>
-            <button onclick="filterComponents('Loader')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Loader</button>
-            <button onclick="filterComponents('Radio')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Radio</button>
-            <button onclick="filterComponents('Switch')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Switch</button>
-            <button onclick="filterComponents('Tooltip')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Tooltip</button>
-            <button onclick="filterComponents('UI Extended')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">UI Extended</button>
-        </div>
-    </section>
+        <section class="container mx-auto px-6 py-6 overflow-x-auto">
+            <div class="flex gap-2 justify-start md:justify-center min-w-max pb-2" id="categories-container">
+                <button onclick="filterComponents('all')" class="category-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-xs font-bold transition">All Category</button>
+                <button onclick="filterComponents('Button')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Button</button>
+                <button onclick="filterComponents('Card')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Card</button>
+                <button onclick="filterComponents('Checkbox')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Checkbox</button>
+                <button onclick="filterComponents('Input')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Input</button>
+                <button onclick="filterComponents('Loader')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Loader</button>
+                <button onclick="filterComponents('Radio')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Radio</button>
+                <button onclick="filterComponents('Switch')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Switch</button>
+                <button onclick="filterComponents('Tooltip')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">Tooltip</button>
+                <button onclick="filterComponents('UI Extended')" class="category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition">UI Extended</button>
+            </div>
+        </section>
 
-    <div class="container mx-auto px-6 py-2">
-        <div id="ad-space-container" class="w-full flex justify-center items-center overflow-hidden">
+        <div class="container mx-auto px-6 py-2">
+            <div id="ad-space-container" class="w-full flex justify-center items-center overflow-hidden">
+            </div>
         </div>
+
+        <section class="container mx-auto px-6 py-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="components-grid">
+                <div class="col-span-full text-center py-20">
+                    <p class="text-slate-500 text-sm">جاري تحميل المحتوى... </p>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <section class="container mx-auto px-6 py-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="components-grid">
-            <div class="col-span-full text-center py-20">
-                <p class="text-slate-500 text-sm">جاري تحميل المحتوى... </p>
-            </div>
-        </div>
-    </section>
-
-    <div id="code-modal" class="fixed inset-0 bg-black/95 flex items-center justify-center p-4 md:p-8 hidden z-50 backdrop-blur-md">
-        <div class="bg-[#16171D] border border-slate-850 rounded-2xl max-w-6xl w-full h-[85vh] flex flex-col overflow-hidden relative shadow-2xl">
-            
-            <div class="p-4 border-b border-slate-800/80 flex justify-between items-center bg-[#111216]">
+    <div id="project-view" class="view-section hidden min-h-screen flex flex-col">
+        <header class="py-4 border-b border-slate-800/40 bg-[#111216]">
+            <div class="container mx-auto px-6 flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                    <button onclick="closeModal()" class="text-slate-400 hover:text-white text-xs flex items-center gap-1 bg-[#1A1C23] border border-slate-800 px-3 py-1.5 rounded-lg transition">
-                        <span>←</span> خلف
+                    <button onclick="navigateToHome()" class="text-slate-400 hover:text-white text-xs flex items-center gap-1 bg-[#16171D] border border-slate-800 px-3 py-1.5 rounded-lg transition">
+                        <span>←</span> العودة للرئيسية
                     </button>
-                    <h3 class="text-sm font-bold text-white" id="modal-category">اسم القسم</h3>
+                    <h3 class="text-sm font-bold text-white" id="page-category">اسم القسم</h3>
                 </div>
+                <span class="text-2xl font-black text-white tracking-wider font-mono cursor-pointer" onclick="navigateToHome()">CodeX</span>
+            </div>
+        </header>
+
+        <div class="flex-1 grid grid-cols-1 lg:grid-cols-2 overflow-hidden" style="direction: ltr;">
+            <div class="bg-[#EAEAEA] min-h-[40vh] lg:min-h-0 flex items-center justify-center overflow-auto relative p-6">
+                <div id="live-preview-box" class="w-full h-full flex justify-center items-center"></div>
             </div>
 
-            <div class="flex-1 grid grid-cols-1 lg:grid-cols-2 overflow-hidden" style="direction: ltr;">
-                
-                <div class="bg-[#EAEAEA] flex items-center justify-center overflow-auto relative">
-                    <div id="live-preview-box" class="w-full h-full flex justify-center items-center"></div>
+            <div class="bg-[#111216] border-t lg:border-t-0 lg:border-l border-slate-800 flex flex-col">
+                <div class="flex border-b border-slate-800/80 bg-[#16171D] px-4 gap-1">
+                    <button id="tab-html-btn" onclick="switchCodeTab('html')" class="px-4 py-3 text-xs font-bold border-b-2 border-indigo-500 text-white transition">HTML</button>
+                    <button id="tab-css-btn" onclick="switchCodeTab('css')" class="px-4 py-3 text-xs font-semibold text-slate-400 hover:text-white transition">CSS</button>
+                    <button id="tab-js-btn" onclick="switchCodeTab('js')" class="px-4 py-3 text-xs font-semibold text-slate-400 hover:text-white transition hidden">JS</button>
                 </div>
 
-                <div class="bg-[#111216] border-t lg:border-t-0 lg:border-l border-slate-800 flex flex-col overflow-hidden">
-                    <div class="flex border-b border-slate-800/80 bg-[#16171D] px-4 gap-1">
-                        <button id="tab-html-btn" onclick="switchCodeTab('html')" class="px-4 py-3 text-xs font-bold border-b-2 border-indigo-500 text-white transition">HTML</button>
-                        <button id="tab-css-btn" onclick="switchCodeTab('css')" class="px-4 py-3 text-xs font-semibold text-slate-400 hover:text-white transition">CSS</button>
-                        <button id="tab-js-btn" onclick="switchCodeTab('js')" class="px-4 py-3 text-xs font-semibold text-slate-400 hover:text-white transition hidden">JS</button>
-                    </div>
-
-                    <div class="flex justify-between items-center bg-[#111216] px-4 py-2.5 border-b border-slate-800/50">
-                        <span class="text-[10px] text-slate-500 font-mono tracking-wider" id="code-type-label">HTML CODE</span>
-                        <button onclick="copyCurrentCode()" class="bg-[#1A1C23] border border-slate-800 hover:bg-indigo-600 hover:text-white text-slate-300 text-xs px-4 py-1.5 rounded-lg transition-all flex items-center gap-1.5" id="copy-btn">
-                            <span>📋</span> نسخ الكود
-                        </button>
-                    </div>
-
-                    <pre class="flex-1 p-5 overflow-auto text-left"><code class="text-xs font-mono text-emerald-400 whitespace-pre-wrap" id="modal-code"></code></pre>
+                <div class="flex justify-between items-center bg-[#111216] px-4 py-2.5 border-b border-slate-800/50">
+                    <span class="text-[10px] text-slate-500 font-mono tracking-wider" id="code-type-label">HTML CODE</span>
+                    <button onclick="copyCurrentCode()" class="bg-[#1A1C23] border border-slate-800 hover:bg-indigo-600 hover:text-white text-slate-300 text-xs px-4 py-1.5 rounded-lg transition-all flex items-center gap-1.5" id="copy-btn">
+                        <span>📋</span> نسخ الكود
+                    </button>
                 </div>
+
+                <pre class="flex-1 p-5 overflow-auto text-left bg-[#0D0E12]"><code class="text-xs font-mono text-emerald-400 whitespace-pre-wrap" id="modal-code"></code></pre>
             </div>
         </div>
     </div>
 
     <div id="privacy-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 hidden z-50 backdrop-blur-sm">
         <div class="bg-[#16171D] border border-slate-800/80 rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl">
-            
             <div class="p-5 border-b border-slate-800/80 flex justify-between items-center bg-[#111216]">
                 <h3 class="text-md font-bold text-white flex items-center gap-2">
                     <span>🛡️</span> سياسة الخصوصية لـ CodeX
@@ -99,25 +99,16 @@
                     &times;
                 </button>
             </div>
-
             <div class="p-6 overflow-y-auto space-y-4 text-slate-300 text-sm leading-relaxed">
                 <p>مرحبًا بك في موقع <strong>CodeX</strong>. خصوصيتك تهمنا، ونسعى دائمًا لتوفير بيئة تصفح آمنة ومريحة لجميع زوارنا ومطورينا.</p>
-                
                 <hr class="border-slate-800/60">
-
                 <h4 class="font-bold text-indigo-400 text-md">📌 الإعلانات التي نستخدمها</h4>
-                <p>نحن نستخدم شبكة إعلانات <strong>Monetag</strong> الموثوقة لتمويل هذا المشروع وتطويره بشكل مستمر. قد تقوم هذه الخدمات بجمع معلومات غير شخصية عن تصفحك لتقديم إعلانات تناسب اهتماماتك.</p>
-
+                <p>نحن نستخدم شبكة إعلانات <strong>Monetag</strong> الموثوقة لتمويل هذا المشروع وتطويره بشكل مستمر.</p>
                 <h4 class="font-bold text-indigo-400 text-md">💡 ساعدنا على الاستمرار والنمو</h4>
                 <div class="bg-indigo-950/30 border border-indigo-500/20 p-4 rounded-xl text-indigo-300">
-                    إن تقديم هذه المكونات البرمجية الجاهزة وبجودة عالية يتطلب الكثير من الجهد والوقت ومصاريف تشغيل الخوادم وقواعد البيانات. 
-                    <strong class="text-white block mt-2">🙏 يرجى مساعدتنا عن طريق إلغاء تفعيل أدوات حظر الإعلانات (AdBlocker) على موقعنا.</strong>
-                    تأكد تمامًا أن إعلاناتنا غير مزعجة وهدفها الوحيد هو دعم هذا العمل المجاني.
+                    يرجى مساعدتنا عن طريق إلغاء تفعيل أدوات حظر الإعلانات (AdBlocker).
                 </div>
-
-                <p>باستخدامك لموقعنا، فإنك توافق على سياسة الخصوصية المتبعة لدينا. شكرًا لتفهمكم ودعمكم المستمر!</p>
             </div>
-
             <div class="p-4 border-t border-slate-800/80 bg-[#111216] flex justify-end">
                 <button onclick="closePrivacyModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs px-6 py-2.5 rounded-lg font-bold transition-all">
                     موافق ومتابعة التصفح
@@ -146,7 +137,6 @@
         let activeComponent = null;
         let activeTab = 'html';
 
-        // جلب كود الإعلان من قاعدة البيانات وحقنه ديناميكياً بعد تحميل المحتوى
         async function loadAdvertisement() {
             try {
                 const adDocRef = doc(db, "settings", "ads");
@@ -166,7 +156,6 @@
             }
         }
 
-        // حقن إعلانات Monetag بعد تحميل الصفحة
         function injectExternalAds() {
             try {
                 const script1 = document.createElement('script');
@@ -177,7 +166,6 @@
             }
         }
 
-        // دالة لعرض رسالة خطأ محترمة عند مواجهة أي مشكلة في جلب المحتوى
         function showFriendlyErrorMessage() {
             const grid = document.getElementById('components-grid');
             grid.innerHTML = `
@@ -185,21 +173,18 @@
                     <div class="text-indigo-500 text-4xl mb-4">🔄</div>
                     <h4 class="text-white font-bold text-base mb-2">عذرًا، قد يكون هناك ضغط كبير على الموقع حاليًا</h4>
                     <p class="text-slate-400 text-xs leading-relaxed mb-6 max-w-md mx-auto">
-                        يبدو أن خوادمنا تستقبل الكثير من الطلبات في الوقت الحالي، مما قد يؤدي إلى تأخر في جلب البيانات من قاعدة البيانات. نرجو منكم الانتظار قليلاً أو محاولة تحديث الصفحة.
+                        يبدو أن خوادمنا تستقبل الكثير من الطلبات في الوقت الحالي. نرجو منكم الانتظار قليلاً أو محاولة تحديث الصفحة.
                     </p>
-                    <button id="retry-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-6 py-3 rounded-xl transition-all duration-300 shadow-md flex items-center gap-2 mx-auto hover:scale-105 active:scale-95">
+                    <button id="retry-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold px-6 py-3 rounded-xl transition-all duration-300 shadow-md flex items-center gap-2 mx-auto">
                         🔄 تحديث الصفحة بالكامل
                     </button>
                 </div>
             `;
-
-            // ربط زر إعادة المحاولة بإعادة تحميل الصفحة (Refresh) بالكامل
             document.getElementById('retry-btn').addEventListener('click', () => {
                 window.location.reload();
             });
         }
 
-        // جلب المحتوى أولاً، ثم تحميل الإعلانات المتبقية مع معالجة راقية للفشل أو الفراغ
         async function fetchComponents() {
             const grid = document.getElementById('components-grid');
             grid.innerHTML = `
@@ -219,54 +204,27 @@
                     showFriendlyErrorMessage();
                 } else {
                     displayComponents(allComponents);
-                    
-                    // فحص الرابط عند الفتح لمعرفة ما إذا كان هناك مشروع محدد يجب عرضه مباشرة
-                    checkUrlParameters();
+                    // فحص الرابط للتحقق من التوجيه
+                    route();
                 }
 
-                // استدعاء الإعلانات مباشرة بعد جاهزية المحتوى لضمان سرعة الصفحة
                 loadAdvertisement();
                 injectExternalAds();
 
             } catch (error) {
                 console.error(error);
                 showFriendlyErrorMessage();
-                
-                // تشغيل الإعلانات حتى لو فشل تحميل المحتوى
                 loadAdvertisement();
                 injectExternalAds();
             }
         }
 
-        // دالة لفحص الرابط وفتح العنصر المطلوب مباشرة
-        function checkUrlParameters() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const category = urlParams.get('category');
-            const id = urlParams.get('id');
-
-            if (category && id) {
-                // البحث عن المكوّن المطابق للقسم والـ ID الرقمي (الترتيب أو حقل numId)
-                const targetComp = allComponents.find((comp, index) => {
-                    const compId = comp.numId !== undefined ? comp.numId.toString() : index.toString();
-                    return comp.category.toLowerCase() === category.toLowerCase() && compId === id;
-                });
-
-                if (targetComp) {
-                    const originalIndex = allComponents.indexOf(targetComp);
-                    showCode(targetComp, originalIndex);
-                }
-            }
-        }
-
-        // معالجة وتوفير بيئة ألوان وخطوط مرنة داخل الـ Shadow DOM
         function processCSS(cssCode) {
             if (!cssCode) return '';
-            
             let processed = cssCode.replace(/(?<![\w-])body(?![\w-])/g, '.shadow-body');
             processed = processed.replace(/background-clip:\s*text;/g, 'background-clip: text; -webkit-background-clip: text;');
-            processed = `
+            return `
                 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700;800&family=Inter:wght=300;400;500;600;700;800&family=Fira+Code:wght=400;500&display=swap');
-                
                 :host {
                     --main-size: 4em;
                     --text-color: #000000;
@@ -276,7 +234,6 @@
                 }
                 ${processed}
             `;
-            return processed;
         }
 
         function displayComponents(data) {
@@ -335,9 +292,15 @@
                     shadow.appendChild(script);
                 }
 
-                // تمرير الترتيب الفعلي كـ ID
                 const originalIndex = allComponents.indexOf(comp);
-                card.querySelector('.get-code-btn').addEventListener('click', () => showCode(comp, originalIndex));
+                // عند الضغط، يتم تغيير الرابط والانتقال للمشروع كصفحة مستقلة
+                card.querySelector('.get-code-btn').addEventListener('click', () => {
+                    const categoryEncoded = encodeURIComponent(comp.category);
+                    const numId = comp.numId !== undefined ? comp.numId : originalIndex;
+                    window.history.pushState({}, '', `?page=project&category=${categoryEncoded}&id=${numId}`);
+                    route();
+                });
+
                 grid.appendChild(card);
             });
         }
@@ -349,20 +312,23 @@
             event.target.className = "category-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-xs font-bold transition";
 
             if (category === 'all') {
+                window.history.pushState({}, '', window.location.pathname);
                 if (allComponents.length === 0) {
                     showFriendlyErrorMessage();
                 } else {
                     displayComponents(allComponents);
                 }
             } else {
+                window.history.pushState({}, '', `?category=${encodeURIComponent(category)}`);
                 const filtered = allComponents.filter(c => c.category === category);
                 displayComponents(filtered);
             }
         };
 
-        function showCode(comp, index) {
+        // دالة لعرض المشروع كصفحة كاملة مستقلة تماماً
+        function showProjectPage(comp) {
             activeComponent = comp;
-            document.getElementById('modal-category').innerText = comp.category;
+            document.getElementById('page-category').innerText = comp.category;
 
             const liveBox = document.getElementById('live-preview-box');
             liveBox.innerHTML = '';
@@ -402,12 +368,10 @@
             }
 
             switchCodeTab('html');
-            document.getElementById('code-modal').classList.remove('hidden');
 
-            // تحديث الرابط في المتصفح تلقائياً عند فتح المشروع
-            const categoryEncoded = encodeURIComponent(comp.category);
-            const numId = comp.numId !== undefined ? comp.numId : index;
-            window.history.pushState({path: `?category=${categoryEncoded}&id=${numId}`}, '', `?category=${categoryEncoded}&id=${numId}`);
+            // إخفاء الصفحة الرئيسية وإظهار صفحة المشروع الكاملة
+            document.getElementById('main-view').classList.add('hidden');
+            document.getElementById('project-view').classList.remove('hidden');
         }
 
         window.switchCodeTab = function(tab) {
@@ -441,12 +405,10 @@
             }
         };
 
-        window.closeModal = function() {
-            document.getElementById('code-modal').classList.add('hidden');
-            document.getElementById('copy-btn').innerHTML = '<span>📋</span> نسخ الكود';
-            
-            // إرجاع الرابط الأصلي للموقع عند إغلاق المشروع
-            window.history.pushState({path: window.location.pathname}, '', window.location.pathname);
+        window.navigateToHome = function() {
+            // تفريغ الرابط والعودة للرئيسية
+            window.history.pushState({}, '', window.location.pathname);
+            route();
         };
 
         window.copyCurrentCode = function() {
@@ -462,7 +424,51 @@
             });
         };
 
-        // دوال نافذة سياسة الخصوصية
+        // نظام التوجيه وإدارة العرض الفعلي للصفحات (Routing Engine)
+        function route() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('page');
+            const category = urlParams.get('category');
+            const id = urlParams.get('id');
+
+            if (page === 'project' && category && id) {
+                // البحث عن المكوّن المطابق للقسم والـ ID الرقمي لفتحه مباشرة
+                const targetComp = allComponents.find((comp, index) => {
+                    const compId = comp.numId !== undefined ? comp.numId.toString() : index.toString();
+                    return comp.category.toLowerCase() === category.toLowerCase() && compId === id;
+                });
+
+                if (targetComp) {
+                    showProjectPage(targetComp);
+                    return;
+                }
+            }
+
+            // تصفية الأقسام بناءً على الرابط بشكل ثابت عند التحديث
+            if (category && !page) {
+                const filtered = allComponents.filter(c => c.category.toLowerCase() === category.toLowerCase());
+                displayComponents(filtered);
+                
+                // تحديث الأزرار بصرياً لتطابق القسم المحدد بالرابط
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    if(btn.innerText.toLowerCase() === category.toLowerCase()) {
+                        btn.className = "category-btn bg-indigo-600 text-white px-4 py-2 rounded-lg text-xs font-bold transition";
+                    } else {
+                        btn.className = "category-btn bg-[#1A1C23] border border-slate-800 text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold transition";
+                    }
+                });
+            } else {
+                displayComponents(allComponents);
+            }
+
+            // إظهار الصفحة الرئيسية وإخفاء صفحات العرض الأخرى
+            document.getElementById('project-view').classList.add('hidden');
+            document.getElementById('main-view').classList.remove('hidden');
+        }
+
+        // الاستماع لزر "الخلف والتقدم" بالمتصفح لإبقاء التصفح متزامناً
+        window.addEventListener('popstate', route);
+
         window.openPrivacyModal = function() {
             document.getElementById('privacy-modal').classList.remove('hidden');
         }
@@ -471,7 +477,6 @@
             document.getElementById('privacy-modal').classList.add('hidden');
         }
 
-        // تشغيل العملية عند تحميل الصفحة
         window.addEventListener('DOMContentLoaded', () => {
             fetchComponents();
         });
