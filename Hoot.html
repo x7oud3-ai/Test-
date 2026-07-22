@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مصحف النور - الإصدار الذهبي الفاخر</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary-dark: #0d2b1d;
+        --gold-primary: #d4ad63;
+        --gold-light: #f3e5ab;
+        --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+        --paper-white: #fdfbf7;
+        --card-bg: #ffffff;
+        --text-color: #1f2937;
+    }
+
+    body {
+        font-family: 'Amiri', serif;
+        background: #f7f5f0;
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        -webkit-tap-highlight-color: transparent;
+        transition: background-color 0.4s, color 0.4s;
+    }
+
+    body.dark-mode {
+        background-color: #0b0f12;
+        color: #e5e7eb;
+        --paper-white: #161c22;
+        --card-bg: #11161b;
+    }
+
+    .dark-mode .quran-page, 
+    .dark-mode #sideDrawer, 
+    .dark-mode header,
+    .dark-mode .surah-card {
+        background: var(--paper-white);
+        color: #e5e7eb;
+        border-color: rgba(212, 173, 99, 0.15);
+    }
+
+    .dark-mode .surah-card:hover {
+        border-color: var(--gold-primary);
+    }
+
+    .title-font {
+        font-family: 'Reem Kufi', sans-serif;
+    }
+
+    .gold-text {
+        background: var(--gold-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .quran-page {
+        background: var(--paper-white);
+        border-radius: 28px;
+        padding: 3rem 2rem;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+        border: 1px solid rgba(212, 173, 99, 0.25);
+        position: relative;
+    }
+
+    .quran-text {
+        font-size: 2.25rem;
+        line-height: 4.5rem;
+        text-align: justify;
+        text-justify: inter-word;
+    }
+
+    .ayah-container {
+        display: inline;
+    }
+
+    .ayah-end {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,5 95,50 50,95 5,50" fill="none" stroke="%23d4ad63" stroke-width="5"/><circle cx="50" cy="50" r="38" fill="none" stroke="%23d4ad63" stroke-width="2"/></svg>') no-repeat center;
+        background-size: contain;
+        font-size: 0.95rem;
+        font-family: 'Reem Kufi', sans-serif;
+        color: var(--gold-primary);
+        font-weight: bold;
+        margin: 0 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        vertical-align: middle;
+    }
+
+    .ayah-end:hover {
+        transform: scale(1.15) rotate(45deg);
+        filter: drop-shadow(0 0 6px rgba(212, 173, 99, 0.6));
+    }
+
+    #sideDrawer {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 85%;
+        max-width: 360px;
+        height: 100%;
+        background: var(--card-bg);
+        z-index: 2000;
+        box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #sideDrawer.active { right: 0; }
+
+    .floating-nav {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 450px;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-radius: 50px;
+        padding: 8px 24px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        z-index: 1000;
+        border: 1px solid rgba(212, 173, 99, 0.3);
+    }
+
+    .dark-mode .floating-nav {
+        background: rgba(22, 28, 34, 0.85);
+        border-color: rgba(212, 173, 99, 0.2);
+    }
+
+    .play-btn {
+        width: 58px;
+        height: 58px;
+        background: linear-gradient(135deg, #1a4d2e, #0d2b1d);
+        color: #d4ad63;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 18px rgba(13, 43, 29, 0.3);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .play-btn:active {
+        transform: scale(0.95);
+    }
+
+    #tafseerModal {
+        position: fixed;
+        bottom: -100%;
+        left: 0;
+        width: 100%;
+        background: var(--card-bg);
+        z-index: 2100;
+        border-top-left-radius: 32px;
+        border-top-right-radius: 32px;
+        transition: bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        max-height: 70vh;
+        box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+    }
+    #tafseerModal.active { bottom: 0; }
+
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(4px);
+        z-index: 1900;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+    .overlay.active { display: block; opacity: 1; }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #d4ad6355; border-radius: 10px; }
+</style>
+</head>
+<body class="pb-36 selection:bg-amber-200 selection:text-emerald-950">
+
+<div id="overlay" class="overlay" onclick="closeAllModals()"></div>
+
+<div id="tafseerModal" class="p-6 md:p-8">
+    <div class="flex justify-between items-center pb-4 mb-4 border-b border-amber-500/20">
+        <div>
+            <span class="text-xs text-amber-600 font-bold tracking-widest uppercase block mb-1">التفسير الميسر</span>
+            <h3 id="tafseerTitle" class="text-xl font-bold title-font text-emerald-900 dark:text-amber-400">سورة - الآية</h3>
+        </div>
+        <button onclick="closeAllModals()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-400 transition-colors">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+    </div>
+    <div id="tafseerContent" class="text-lg leading-relaxed opacity-90 overflow-y-auto max-h-[45vh] pl-2">
+        جاري تحميل التفسير...
+    </div>
+</div>
+
+<aside id="sideDrawer" class="flex flex-col">
+    <div class="p-6 bg-gradient-to-r from-emerald-950 to-emerald-900 text-white flex justify-between items-center shadow-md">
+        <div>
+            <h2 class="text-2xl font-bold title-font text-amber-300">الفهرس العام</h2>
+            <p class="text-xs text-emerald-200 mt-1">اختر السورة للانتقال السريع</p>
+        </div>
+        <button onclick="closeMenu()" class="p-2 text-emerald-200 hover:text-white transition-colors">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+    </div>
+    <div class="p-4 border-b border-gray-100 dark:border-gray-800 flex justify-between items-center">
+        <span class="text-sm font-bold">الوضع الليلي</span>
+        <button onclick="toggleDarkMode()" class="px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-600 border border-amber-500/30 text-xs font-bold transition-all hover:bg-amber-500 hover:text-white">
+            تغيير المظهر
+        </button>
+    </div>
+    <div class="flex-1 overflow-y-auto p-3 space-y-1" id="drawerList"></div>
+</aside>
+
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-[#11161b]/80 backdrop-blur-md border-b border-amber-500/10 p-4 transition-colors">
+    <div class="max-w-3xl mx-auto flex justify-between items-center">
+        <button onclick="openMenu()" class="p-2 rounded-xl hover:bg-amber-500/10 text-emerald-900 dark:text-amber-400 transition-colors">
+            <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <h1 id="viewTitle" class="text-xl font-bold title-font gold-text tracking-wide">مصحف النور</h1>
+        <button onclick="showHome()" class="p-2 rounded-xl hover:bg-amber-500/10 text-emerald-900 dark:text-amber-400 transition-colors">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        </button>
+    </div>
+</header>
+
+<main class="max-w-3xl mx-auto p-4 md:p-6">
+    <section id="homePage">
+        <div class="relative mb-8">
+            <input type="text" oninput="filterSurahs(this.value)" placeholder="ابحث عن اسم السورة..." class="w-full p-4 pr-12 rounded-2xl bg-white dark:bg-[#161c22] border border-amber-500/20 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 transition-all text-lg">
+            <svg class="absolute right-4 top-5 text-amber-600/60" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </div>
+        <div id="mainSurahList" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+    </section>
+
+    <section id="readerPage" class="hidden">
+        <div class="text-center mb-8">
+            <h2 id="surahNameDisplay" class="text-4xl md:text-5xl font-bold title-font text-emerald-900 dark:text-amber-400 mb-3"></h2>
+            <div id="surahInfoBadge" class="text-xs font-bold px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-600 border border-amber-500/20 inline-block"></div>
+        </div>
+        <div class="quran-page">
+            <div id="bismillah" class="text-center text-3xl md:text-4xl mb-10 text-amber-600/90 font-bold title-font">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+            <div id="fullContent" class="quran-text"></div>
+        </div>
+    </section>
+</main>
+
+<nav class="floating-nav flex justify-between items-center">
+    <button onclick="openMenu()" class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-amber-600 transition-colors">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <span class="text-[10px] font-bold">الفهرس</span>
+    </button>
+    
+    <button onclick="toggleAudio()" class="play-btn">
+        <svg id="iconPlay" width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="iconPause" class="hidden" width="26" height="26" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+
+    <button onclick="downloadAudio()" class="flex flex-col items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-amber-600 transition-colors">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>
+        <span class="text-[10px] font-bold">تحميل</span>
+    </button>
+</nav>
+
+<audio id="audioPlayer"></audio>
+
+<script>
+    const player = document.getElementById('audioPlayer');
+    let surahs = [];
+    let currentSurahName = "";
+
+    async function init() {
+        try {
+            const res = await fetch('https://api.alquran.cloud/v1/surah');
+            const data = await res.json();
+            surahs = data.data;
+            render(surahs);
+        } catch (e) { 
+            console.error("Error fetching surahs", e); 
+        }
+    }
+
+    function render(list) {
+        const html = list.map(s => `
+            <div onclick="selectS(${s.number}, '${s.name}', '${s.revelationType}', ${s.numberOfAyahs})" 
+                 class="surah-card bg-white dark:bg-[#161c22] p-4 rounded-2xl flex justify-between items-center shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-800 hover:border-amber-500/40 transition-all cursor-pointer">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 font-bold flex items-center justify-center text-sm title-font">
+                        ${s.number}
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold title-font text-emerald-900 dark:text-gray-100">${s.name}</h3>
+                        <span class="text-xs text-gray-400">${s.revelationType === 'Meccan' ? 'مكية' : 'مدنية'}</span>
+                    </div>
+                </div>
+                <span class="text-xs px-3 py-1 rounded-full bg-gray-50 dark:bg-gray-800/50 text-gray-400 border border-gray-100 dark:border-gray-700">${s.numberOfAyahs} آية</span>
+            </div>
+        `).join('');
+        document.getElementById('mainSurahList').innerHTML = html;
+        document.getElementById('drawerList').innerHTML = html;
+    }
+
+    async function selectS(id, name, type, ayahsCount) {
+        closeAllModals();
+        currentSurahName = name;
+        document.getElementById('homePage').classList.add('hidden');
+        document.getElementById('readerPage').classList.remove('hidden');
+        document.getElementById('surahNameDisplay').textContent = name;
+        document.getElementById('surahInfoBadge').textContent = `${type === 'Meccan' ? 'مكية' : 'مدنية'} • ${ayahsCount} آية`;
+        
+        document.getElementById('bismillah').style.display = (id === 1 || id === 9) ? 'none' : 'block';
+        document.getElementById('fullContent').innerHTML = '<p class="text-center text-gray-400 text-lg">جاري تحميل الآيات المباركة...</p>';
+        
+        try {
+            const res = await fetch(`https://api.alquran.cloud/v1/surah/${id}`);
+            const data = await res.json();
+            
+            const formattedAyahs = data.data.ayahs.map(a => {
+                let text = a.text;
+                if (a.numberInSurah === 1 && id !== 1 && id !== 9) {
+                    text = text.replace("بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ", "").trim();
+                }
+                return `<span class="ayah-container">${text} <span class="ayah-end" title="التفسير" onclick="showTafseer(${id}, ${a.numberInSurah})">${a.numberInSurah}</span></span>`;
+            }).join(' ');
+
+            document.getElementById('fullContent').innerHTML = formattedAyahs;
+            player.src = `https://server11.mp3quran.net/yasser/${id.toString().padStart(3, '0')}.mp3`;
+            
+            // إعادة تعيين حالة زر التشغيل
+            document.getElementById('iconPlay').classList.remove('hidden');
+            document.getElementById('iconPause').classList.add('hidden');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (e) {
+            document.getElementById('fullContent').innerHTML = '<p class="text-center text-red-500">حدث خطأ أثناء تحميل النص القرآني.</p>';
+        }
+    }
+
+    async function showTafseer(sId, aId) {
+        document.getElementById('tafseerTitle').textContent = `${currentSurahName} - الآية (${aId})`;
+        document.getElementById('tafseerContent').textContent = 'جاري التفسير...';
+        document.getElementById('tafseerModal').classList.add('active');
+        document.getElementById('overlay').classList.add('active');
+        
+        try {
+            const res = await fetch(`https://api.alquran.cloud/v1/ayah/${sId}:${aId}/ar.jalalayn`);
+            const data = await res.json();
+            document.getElementById('tafseerContent').textContent = data.data.text;
+        } catch (e) {
+            document.getElementById('tafseerContent').textContent = 'تعذر تحميل التفسير حالياً.';
+        }
+    }
+
+    function toggleAudio() {
+        if(!player.src) return;
+        if(player.paused) { 
+            player.play(); 
+            document.getElementById('iconPlay').classList.add('hidden'); 
+            document.getElementById('iconPause').classList.remove('hidden'); 
+        } else { 
+            player.pause(); 
+            document.getElementById('iconPlay').classList.remove('hidden'); 
+            document.getElementById('iconPause').classList.add('hidden'); 
+        }
+    }
+
+    async function downloadAudio() {
+        if(!player.src) {
+            alert("يرجى اختيار سورة أولاً لتحميل الصوت!");
+            return;
+        }
+        try {
+            const response = await fetch(player.src);
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = `${currentSurahName || 'سورة'}.mp3`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        } catch (e) {
+            window.open(player.src, '_blank');
+        }
+    }
+
+    function toggleDarkMode() { 
+        document.body.classList.toggle('dark-mode'); 
+    }
+
+    function closeAllModals() { 
+        document.getElementById('sideDrawer').classList.remove('active'); 
+        document.getElementById('tafseerModal').classList.remove('active'); 
+        document.getElementById('overlay').classList.remove('active'); 
+    }
+
+    function closeMenu() {
+        closeAllModals();
+    }
+
+    function openMenu() { 
+        document.getElementById('sideDrawer').classList.add('active'); 
+        document.getElementById('overlay').classList.add('active'); 
+    }
+
+    function showHome() { 
+        document.getElementById('homePage').classList.remove('hidden'); 
+        document.getElementById('readerPage').classList.add('hidden'); 
+        if(!player.paused) toggleAudio();
+    }
+
+    function filterSurahs(val) { 
+        render(surahs.filter(s => s.name.includes(val.trim()))); 
+    }
+
+    init();
+</script>
+</body>
+</html>
